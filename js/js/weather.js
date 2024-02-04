@@ -9,8 +9,12 @@ function onGeoOk(position) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      city.innerText = data.name;
-      weather.innerText = `${data.weather[0].main} / ${data.main.temp}`;
+      const weather = document.querySelector("#weather span:first-child");
+      const temp = weather.nextElementSibling;
+      const city = document.querySelector("#weather span:last-child");
+      weather.innerText = data.name;
+      temp.innerText = `${data.main.temp}도`;
+      city.innerText = data.weather[0].main;
     });
 }
 function onGeoError() {
